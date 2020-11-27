@@ -18,24 +18,51 @@
 <body>
 
     <header>
-        <!-- As a heading -->
-        <nav class="navbar navbar-light bg-dark">
-            <a href="./index.html"><img src="images/logoOrinoco.png" alt="" id="logo"></a>
-            <div class="d-flex justify-content-start">
-                <a href="#"><span class="navbar-brand text-light mb-0 h1">Commande</span></a>
-                <a href="#"><span class="navbar-brand text-light mb-0 h1">Panier</span></a>
-            </div>
+
+        <nav class="navbar navbar-light bg-light">
+
+            <a class="navbar-brand" href="index.html">
+                <img src="/images/logoOrinoco.png">
+            </a>
+
+            <ul class="nav">
+                <li class="nav-item">
+                    <a class="nav-link active" href="./Orderconfirmation.html">Commande</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="./Basket.html">Panier</a>
+                </li>
+            </ul>
+
         </nav>
+
     </header>
+
     <section>
-        <div id="title">Vente en ligne d'appareils photos vintage</div>
+
+        <h1 class="title">Site de vente d'appareils photos vintages</h1>
+        <h2 class="undertitle">Faites votre choix !</h2>
 
     </section>
-<footer>
 
-</footer>
+    <section>
+
+<div id="Photo"></div>
+
+    </section>
 
 
+    <footer id="footer" class="d-flex justify-content-between fixed-bottom pt-3 pb-3  bg-dark">
+        <a class="text-decoration-none text-white pl-2" href="index.html">Mentions Légales.</a>
+        <a class="text-decoration-none text-white pr-2" href="mailto:contact@orinoco.com">Contactez-nous</a>
+    </footer>
+
+
+
+
+
+
+    <script src="./JS/orinico.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>

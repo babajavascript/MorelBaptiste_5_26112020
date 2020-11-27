@@ -5,13 +5,34 @@
     background: white;
     border-radius: 10px;
 }
-#title {
-    width: 700px;
+.title {
     font-size: 2rem;
     text-align: center;
     margin: auto;
-    margin-top: 100px;
+    margin-top: 80px;
+    letter-spacing: 4px;
 }
+.undertitle{
+    margin-top: 20px;
+    text-align: center;
+    letter-spacing: 4px;
+}
+section, .container{
+    letter-spacing: 4px;
+}
+
 .row {
-    margin-top: 100px;
+    margin-top: 50px;
+}
+ul li a{
+    margin-left: 15px;
+}
+ul li a:hover{
+    margin-left: 15px;
+    color: white;
+    background-color: #4285F4;
+    border-radius: 20px;
+}
+footer a{
+    color: white!important;
 }
