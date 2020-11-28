@@ -36,3 +36,18 @@ ul li a:hover{
 footer a{
     color: white!important;
 }
+#img{
+    width: 286px;
+    height: 100px;
+    background-size: 300px 200px;
+    object-fit: cover;
+    background-repeat: no-repeat;
+}
+#sectionTwo{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.img{
+    height: 200px;
+}
