@@ -50,8 +50,6 @@
         <a class="text-decoration-none text-white pr-2" href="mailto:contact@orinoco.com">Contactez-nous</a>
     </footer>
 
-
-    <script type="text/javascript" src="js/produit.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -62,7 +60,36 @@
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
 
-
+        <script>
+  
+            ///Request GET API and display all camera from the array on index page///
+        
+            let request = new XMLHttpRequest();
+            request.onreadystatechange = function () {
+                if (this.readyState == XMLHttpRequest.DONE && this.status == 200 || this.status == 201) {
+                    let product = JSON.parse(this.responseText);
+                    let cardProduct = document.getElementById('cardProduct');
+                    product.forEach(productCard => {
+                        cardProduct.innerHTML = `
+                        <div class="card" style="width: 18rem;">
+                          <img src="${productCard.imageUrl}" class="card-img-top" alt="...">
+                          <div class="card-body">
+                            <h5 class="card-title">${productCard.name}</h5>
+                            <p class="card-text">${productCard.description}</p>
+                            <p class="card-text">${(productCard.price / 100).toFixed(2)} EUR</p>
+                            <a href="Product.html?id=${productCard._id}" class="btn btn-primary">Détails</a>
+                          </div>
+                        </div>
+                        `;
+                    });
+                }
+            }
+            request.open("GET", "http://localhost:3000/api/cameras");
+            request.send();
+        
+        
+        </script>
+        
         
 
 </body>
