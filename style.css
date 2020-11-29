@@ -36,6 +36,16 @@ ul li a:hover{
 footer a{
     color: white!important;
 }
-
+#cameraList{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    margin-top: 50px;
+}
+.card{
+    margin: 10px;
+}
 
 
