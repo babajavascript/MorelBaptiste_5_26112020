@@ -25,10 +25,10 @@
       </a>
       <ul class="nav">
         <li class="nav-item">
-          <a class="nav-link active" href="./Orderconfirmation.html">Commande</a>
+          <a class="nav-link active" href="./confirmation.html">Commande</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="./Basket.html">Panier</a>
+          <a class="nav-link active" href="./panier.html">Panier</a>
         </li>
       </ul>
     </nav>
@@ -64,7 +64,7 @@
     integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
     crossorigin="anonymous"></script>
 <script>
-  
+
     ///Request GET API and display all camera from the array on index page///
 
     let request = new XMLHttpRequest();
@@ -80,7 +80,7 @@
                     <h5 class="card-title">${camera.name}</h5>
                     <p class="card-text">${camera.description}</p>
                     <p class="card-text">${(camera.price / 100).toFixed(2)} EUR</p>
-                    <a href="Product.html?id=${camera._id}" class="btn btn-primary">Détails</a>
+                    <a href="produit.html?id=${camera._id}" class="btn btn-primary">Détails</a>
                   </div>
                 </div>
                 `;

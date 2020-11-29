@@ -27,10 +27,10 @@
 
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link active" href="./Orderconfirmation.html">Commande</a>
+                    <a class="nav-link active" href="./confirmation.html">Commande</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" href="./Basket.html">Panier</a>
+                    <a class="nav-link active" href="./panier.html">Panier</a>
                 </li>
             </ul>
 
@@ -45,7 +45,7 @@
     </section>
 
 
-    <footer id="footer" class="d-flex justify-content-beetwen fixed-bottom pt-3 pb-3  bg-dark">
+    <footer id="footer" class="d-flex justify-content-between  pt-3 pb-3  bg-dark">
         <a class="text-decoration-none text-white pl-2" href="index.html">Mentions Légales.</a>
         <a class="text-decoration-none text-white pr-2" href="mailto:contact@orinoco.com">Contactez-nous</a>
     </footer>
@@ -60,37 +60,42 @@
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
 
-        <script>
-  
-            ///Request GET API and display all camera from the array on index page///
-        
-            let request = new XMLHttpRequest();
-            request.onreadystatechange = function () {
-                if (this.readyState == XMLHttpRequest.DONE && this.status == 200 || this.status == 201) {
-                    let product = JSON.parse(this.responseText);
-                    let cardProduct = document.getElementById('cardProduct');
-                    product.forEach(productCard => {
-                        cardProduct.innerHTML = `
-                        <div class="card" style="width: 18rem;">
-                          <img src="${productCard.imageUrl}" class="card-img-top" alt="...">
-                          <div class="card-body">
-                            <h5 class="card-title">${productCard.name}</h5>
-                            <p class="card-text">${productCard.description}</p>
-                            <p class="card-text">${(productCard.price / 100).toFixed(2)} EUR</p>
-                            <a href="Product.html?id=${productCard._id}" class="btn btn-primary">Détails</a>
-                          </div>
-                        </div>
-                        `;
-                    });
-                }
+    <script>
+
+        let requestProduct = new XMLHttpRequest();
+        requestProduct.onreadystatechange = function () {
+            if (this.readyState == XMLHttpRequest.DONE && this.status == 200 || this.status == 201) {
+                let product = JSON.parse(this.responseText)
+                let cardProd = document.getElementById('cardProduct')
+                cardProd.innerHTML = `
+                <div class="card" style="width: 18rem;">
+                  <img src="${product.imageUrl}" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">${product.name}</h5>
+                    <p class="card-text">${product.description}</p>
+                    <p class="card-text">${(product.price / 100).toFixed(2)} EUR</p>
+                    <select name="pets" id="pet-select">
+                        <option value="">Choisissez votre objectif</option>
+                        <option value="dog">${product.lenses[0]}</option>
+                        <option value="cat">${product.lenses[1]}</option>
+                    </select>
+                    <a href="Product.html?id=${product._id}" class="btn btn-primary">Ajouter au panier</a>
+                    
+                  </div>
+                </div>
+                `;
             }
-            request.open("GET", "http://localhost:3000/api/cameras");
-            request.send();
-        
-        
-        </script>
-        
-        
+        }
+
+        let params = new URLSearchParams(document.location.search)
+        let id = params.get("id");
+
+        requestProduct.open("GET", `http://localhost:3000/api/cameras/${id}`);
+        requestProduct.send();
+
+    </script>
+
+
 
 </body>
 
