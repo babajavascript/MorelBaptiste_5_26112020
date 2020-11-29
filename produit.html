@@ -78,12 +78,18 @@
                         <option value="">Choisissez votre objectif</option>
                         <option value="dog">${product.lenses[0]}</option>
                         <option value="cat">${product.lenses[1]}</option>
+                        <option value="cat">${product.lenses[2]}</option>
                     </select>
-                    <a href="Product.html?id=${product._id}" class="btn btn-primary">Ajouter au panier</a>
+                    <a href="produit.html?id=${product._id}" id="btn" class="btn btn-primary">Ajouter au panier</a>
                     
                   </div>
                 </div>
                 `;
+                let btn = document.getElementById('btn')
+                btn.addEventListener('click', addToBacket)
+                function addToBacket() {
+                    document.getElementById('btn').innerHTML =' salut'
+                }
             }
         }
 
@@ -92,6 +98,8 @@
 
         requestProduct.open("GET", `http://localhost:3000/api/cameras/${id}`);
         requestProduct.send();
+
+
 
     </script>
 
