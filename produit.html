@@ -45,7 +45,7 @@
     </section>
 
 
-    <footer id="footer" class="d-flex justify-content-between  pt-3 pb-3  bg-dark">
+    <footer id="footer" class="d-flex justify-content-between fixed-bottom pt-3 pb-3  bg-dark">
         <a class="text-decoration-none text-white pl-2" href="index.html">Mentions Légales.</a>
         <a class="text-decoration-none text-white pr-2" href="mailto:contact@orinoco.com">Contactez-nous</a>
     </footer>
@@ -80,18 +80,15 @@
                         <option value="cat">${product.lenses[1]}</option>
                         <option value="cat">${product.lenses[2]}</option>
                     </select>
-                    <a href="produit.html?id=${product._id}" id="btn" class="btn btn-primary">Ajouter au panier</a>
                     
+                        
+                    <a  href="produit.html?id=${product._id}" id="btn" class="btn btn-primary">Ajouter au panier</a>  
                   </div>
                 </div>
                 `;
-                let btn = document.getElementById('btn')
-                btn.addEventListener('click', addToBacket)
-                function addToBacket() {
-                    document.getElementById('btn').innerHTML =' salut'
-                }
             }
         }
+
 
         let params = new URLSearchParams(document.location.search)
         let id = params.get("id");
@@ -99,8 +96,8 @@
         requestProduct.open("GET", `http://localhost:3000/api/cameras/${id}`);
         requestProduct.send();
 
-
-
+        
+        
     </script>
 
 
