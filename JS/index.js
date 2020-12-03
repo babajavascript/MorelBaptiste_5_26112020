@@ -1,13 +1,10 @@
-const urlApi = "http://localhost:3000/api/cameras";
-let cameras = [];
-
 let request = new XMLHttpRequest;
-request.open("GET", urlApi);
+request.open("GET", "http://localhost:3000/api/cameras");
 request.responseType = 'json';
 request.send()
 
 request.onload = function () {
-    if (request.readyState === XMLHttpRequest.DONE && request.status === 200 || request.status === 201) {
+    if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
         cameras = request.response;
         console.log(cameras)
         camerasDisplay();
