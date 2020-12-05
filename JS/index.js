@@ -1,16 +1,18 @@
+const api = "http://localhost:3000/api/cameras";
+
 let request = new XMLHttpRequest;
-request.open("GET", "http://localhost:3000/api/cameras");
+request.open("GET", api);
 request.responseType = 'json';
-request.send()
+request.send();
 
 request.onload = function () {
     if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
         cameras = request.response;
-        console.log(cameras)
+        console.log(cameras);
         camerasDisplay();
     }
     else {
-        alert("error")
+        alert("error");
     }
 }
 
@@ -18,7 +20,7 @@ function camerasDisplay() {
     cameras.forEach(camerasDisplayed);
 }
 function camerasDisplayed(cameras) {
-    let cameraList = document.getElementById('cameraList')
+    let cameraList = document.getElementById('cameraList');
     cameraList.innerHTML += `
     <div class="card" style="width: 18rem;">
       <img src="${cameras.imageUrl}" class="card-img-top" alt="...">
