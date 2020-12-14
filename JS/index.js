@@ -1,27 +1,32 @@
 const api = "http://localhost:3000/api/cameras";
 
-let request = new XMLHttpRequest;
-request.open("GET", api);
-request.responseType = 'json';
-request.send();
+async function getCameras() { 
 
-request.onload = function () {
-    if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-        cameras = request.response;
-        console.log(cameras);
-        camerasDisplay();
-    }
-    else {
-        alert("error");
-    }
+  const myInit = {
+    method: 'GET',
+  };
+  const myRequest = new Request(api, myInit);
+
+  try {
+    const response = await fetch(myRequest);
+    const cameras = await response.json();
+    console.log('cameras', cameras);
+    camerasDisplay(cameras);
+  }
+  catch (error) {
+    console.log('error', error)
+  }
 }
 
-function camerasDisplay() {
-    cameras.forEach(camerasDisplayed);
+getCameras()
+
+function camerasDisplay(cameras) {
+  cameras.forEach(camerasDisplayed);
 }
+
 function camerasDisplayed(cameras) {
-    let cameraList = document.getElementById('cameraList');
-    cameraList.innerHTML += `
+  let cameraList = document.getElementById('cameraList');
+  cameraList.innerHTML += `
     <div class="card" style="width: 18rem;">
       <img src="${cameras.imageUrl}" class="card-img-top" alt="...">
       <div class="card-body">

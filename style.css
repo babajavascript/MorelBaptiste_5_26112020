@@ -12,31 +12,31 @@
     margin-top: 80px;
     letter-spacing: 4px;
 }
-.undertitle{
+.undertitle {
     margin-top: 20px;
     text-align: center;
     letter-spacing: 4px;
 }
-section, .container{
+#letterSection {
     letter-spacing: 4px;
 }
 
 .row {
     margin-top: 50px;
 }
-ul li a{
+ul li a {
     margin-left: 15px;
 }
-ul li a:hover{
+ul li a:hover {
     margin-left: 15px;
     color: white;
-    background-color: #4285F4;
+    background-color: #4285f4;
     border-radius: 20px;
 }
-footer a{
-    color: white!important;
+footer a {
+    color: white !important;
 }
-#cameraList{
+#cameraList {
     width: 100%;
     text-align: center;
     display: flex;
@@ -44,22 +44,60 @@ footer a{
     margin: auto;
     margin-top: 50px;
 }
-.card{
+.card {
     margin: 10px;
 }
-#cardProduct{
+#cardProduct {
     justify-content: center;
     display: flex;
     margin-top: 10px;
 }
-.card-body{
+.card-body {
     text-align: center;
 }
-#pet-select{
+#cameras-select {
     width: 200px;
     margin-bottom: 20px;
 }
 
-button{
+button {
     padding: 20px;
 }
+#panier {
+    margin: auto;
+    margin-top: 50px;
+    margin-left: 20px;
+    margin-right: 20px;
+    background: lightblue;
+}
+#basketBox {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#basketProduct {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+#imageProduct {
+    width: 200px;
+}
+p {
+    text-align: center;
+}
+#total {
+    text-align: center;
+}
+#formDom {
+    margin-top: 100px;
+    margin-bottom: 100px;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+.col-md-4{
+    margin: auto;
+}
+

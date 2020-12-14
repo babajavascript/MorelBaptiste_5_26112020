@@ -39,12 +39,83 @@
     </header>
     <main>
         <h1 class="title">Votre Panier</h1>
+        <h2 id="total"></h2>
     </main>
 
-    <section>
+    <section id="letterSection">
 
-<div id="panier"></div>
+        <div id="panier">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th id="imageProduct">Image de l'article</th>
+                        <th id="descriptionProduct">Nom</th>
+                        <th id="priceProduct">Prix</th>
+                        <th id="Delete">Suppression</th>
+                    </tr>
+                </thead>
+                <tbody id="basketTable">
+                </tbody>
+            </table>
+        </div>
+    </section>
 
+    <section id="formDom">
+        <form class="row g-3 needs-validation" novalidate>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Nom</label>
+                <input type="text" class="form-control" placeholder="Dupont" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Ok
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">prénom</label>
+                <input type="text" class="form-control" placeholder="Jean" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Ok
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustomUsername" class="form-label">Adresse mail</label>
+                <div class="input-group has-validation">
+                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <input type="email" class="form-control" id="validationCustomUsername"
+                        aria-describedby="inputGroupPrepend" placeholder="jeandupont@gmail.com" required>
+                    <div class="invalid-feedback">
+                        Adresse mail requise
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom01" class="form-label">Ville</label>
+                <input type="text" class="form-control" placeholder="Paris" id="validationCustom01" required>
+                <div class="valid-feedback">
+                    Ok
+                </div>
+            </div>
+            <div class="col-md-4">
+                <label for="validationCustom03" class="form-label">Adresse</label>
+                <input type="text" class="form-control" placeholder="1 rue de Paris" id="validationCustom03" required>
+                <div class="invalid-feedback">
+                    adresse réquise
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                    <label class="form-check-label" for="invalidCheck">
+                        J'accepte les conditions d'utilisations
+                    </label>
+                    <div class="invalid-feedback">
+                        Vous devez accepteer les conditions d'utilisations
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button id="buyBtn" class="btn btn-primary basket-btn" type="submit">Acheter</button>
+            </div>
+        </form>
     </section>
 
 
@@ -54,11 +125,7 @@
     </footer>
 
 
-
-
-
-
-
+    <script type="text/javascript" src="js/panier.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
         crossorigin="anonymous"></script>
@@ -69,18 +136,6 @@
         integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
         crossorigin="anonymous"></script>
     <script src="" async defer></script>
-
-
-    <script>
-
-
-
-    </script>
-
-
-
-
-
 
 
 </body>
