@@ -56,53 +56,79 @@ async function displayBasket() {
                 const storageCameras = JSON.parse(localStorage.getItem('basketCameras'));
                 const newStorageCameras = storageCameras.filter(currentCameraId => { return currentCameraId !== cameraDetails._id })
                 localStorage.setItem('basketCameras', JSON.stringify(newStorageCameras));
-
+                
                 basketTable.innerHTML = ``;
                 displayBasket();
             })
         })
+        
+        const form = document.querySelector('.needs-validation')
+        console.log(form)
 
-    };
+        form.addEventListener('submit', async function (event) {
+            event.preventDefault()
+            event.stopPropagation()
+
+            const contact = {
+                email: document.getElementById("email").value,
+                firstName: document.getElementById("firstName").value,
+                lastName: document.getElementById("lastName").value,
+                city: document.getElementById("city").value,
+                address: document.getElementById("adress").value,
+            }
+
+
+            console.log('contact', contact)
+            const order = await createOrder(contact, cameraIds)
+            if (order !== null) {
+                location.replace('confirmation.html')
+            } else {
+                /* afficher une erreur */
+            }
+            form.classList.add('was-validated');
+        })
+    }
 }
 
 displayBasket();
 
-function orderFunk() {
-    const cameraIds = getCameraIds();
-    buttonOrder = document.getElementById('buyBtn')
-    buttonOrder.addEventListener('click', () => {
-        if (cameraIds.length >= 1)
-            console.log('Commande possible')
 
-        else if (cameraIds.length === 0) {
-            console.log('Rien à commander')
-        }
-    })
+/* MODELE DE DONNEES
+{
+    "contact": {
+        "firstName": "baptiste",
+        "lastName": "morel",
+        "address": "133 rue de Paris",
+        "city": "lille",
+        "email": "test@gmail.com"
+    },
+    "products": ["5be1ed3f1c9d44000030b061"]
 }
-
-orderFunk();
-
+*/
 
 
+async function createOrder(contact, products) {
+    const body = {
+        contact,
+        products,
+    }
 
+    const requestCreateOrder = new Request(api + 'order');
 
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function () {
-    'use strict'
+    try {
+        const response = await fetch(requestCreateOrder, {
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            method: 'POST',
+            body: JSON.stringify(body),
+        });
 
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
-
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-        .forEach(function (form) {
-            form.addEventListener('submit', function (event) {
-                if (!form.checkValidity()) {
-                    event.preventDefault()
-                    event.stopPropagation()
-                }
-
-                form.classList.add('was-validated')
-            }, false)
-        })
-})()
+        const order = await response.json();
+        console.log('order', order);
+        return order;
+    } catch (error) {
+        console.log('error', error);
+        return null;
+    }
+}
