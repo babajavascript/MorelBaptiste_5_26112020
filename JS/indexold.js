@@ -1,31 +1,31 @@
 const api = "http://localhost:3000/api/cameras";
 
-/* Function getCameras qui permet d'excecuter la request */
-/* Les promesses fetch et response.json() sont AWAIT pour attendre
-la résolution de la promesse */
+async function getCameras() { 
 
- async function getCameras() {
   const myInit = {
-    method: "GET",
+    method: 'GET',
+  };
+  const myRequest = new Request(api, myInit);
+
+  try {
+    const response = await fetch(myRequest);
+    const cameras = await response.json();
+    console.log('cameras', cameras);
+    camerasDisplay(cameras);
   }
-  const camerasRequest = new Request(api, myInit);
-  const response =  await fetch(camerasRequest);
-  const cameras =  await response.json();
-  camerasDisplay(cameras);
+  catch (error) {
+    console.log('error', error)
+  }
 }
 
-getCameras();
-
-/* Boucle forEach sur toutes les caméras de l'api */
-/* jusqu'a ce qu'il n'y en est plus */
+getCameras()
 
 function camerasDisplay(cameras) {
-  cameras.forEach(allCamerasDisplay);
+  cameras.forEach(camerasDisplayed);
 }
 
-/* Function qui permet d'afficher les caméras dans l'index */
-
-function allCamerasDisplay(cameras) {
+function camerasDisplayed(cameras) {
+  
   let cameraList = document.getElementById('cameraList');
   cameraList.innerHTML += `
     <div class="card" style="width: 18rem;">

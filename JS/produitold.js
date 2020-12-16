@@ -1,25 +1,26 @@
-/* Récupération de l'ID product , ajout dans l'URL */
-
 const usp = new URLSearchParams(document.location.search);
 const id = usp.get('id');
 const api = `http://localhost:3000/api/cameras/${id}`;
 
-/* Function getProduct qui permet d'excecuter la request */
-/* Les promesses fetch et response.json() sont AWAIT pour attendre
-la résolution de la promesse */
-
 async function getProduct() {
 
   const requestProduct = new Request(api);
-  const response = await fetch(requestProduct);
-  const product = await response.json();
-  cardProduct(product);
-  console.table(product)
+  try {
+    const response = await fetch(requestProduct);
+    const product = await response.json();
+    console.log('product', product)
+    cardProduct(product);
+  }
+  catch (error) {
+    console.log('error', error);
+  }
 }
 
 getProduct();
 
-/* Fonction pour afficher les options (Objectifs disponibles) */
+function cardProduct(product) {
+  product.forEach(cardProduct)
+};
 
 function getLenses(lenses) {
   let options = '';
@@ -29,28 +30,25 @@ function getLenses(lenses) {
   return options;
 };
 
-/* Function qui permet d'afficher la caméra correspondante à l'ID */
-
 function cardProduct(product) {
   const cardProd = document.getElementById('cardProduct');
   cardProd.innerHTML = `
-      <div class="card" style="width: 18rem;">
-        <img src="${product.imageUrl}" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">${product.name}</h5>
-          <p class="card-text">${product.description}</p>
-          <p class="card-text">${(product.price / 100).toFixed(2)} EUR</p>
-          <select name="cameras" id="cameras-select">
-              <option value="">Choisissez votre objectif</option>
-              ${getLenses(product.lenses)}
-          </select>
-              
-          <button id="productBtn" class="btn btn-primary btn-product">Ajouter au panier</button>  
-        </div>
+    <div class="card" style="width: 18rem;">
+      <img src="${product.imageUrl}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">${product.name}</h5>
+        <p class="card-text">${product.description}</p>
+        <p class="card-text">${(product.price / 100).toFixed(2)} EUR</p>
+        <select name="cameras" id="cameras-select">
+            <option value="">Choisissez votre objectif</option>
+            ${getLenses(product.lenses)}
+        </select>
+            
+        <button id="productBtn" class="btn btn-primary btn-product">Ajouter au panier</button>  
       </div>
-      `;
+    </div>
+    `;
 
-////////////////////////////////////////////////////// A SUIVRE //////////////////////////////////////
 
   buttonProduct = document.getElementById('productBtn');
   buttonProduct.addEventListener('click', () => {
@@ -64,9 +62,11 @@ function cardProduct(product) {
       })
       if (cameraExistsInBasket) {
         alert('Article déja présent dans le panier')
+        console.log(JSON.stringify([product._id]));
       } else { //
         alert('ajouté au panier')
         storageCameras.push(product._id)
+        console.log(JSON.stringify([product._id]));
         localStorage.setItem('basketCameras', JSON.stringify(storageCameras));
       }
     } else {
