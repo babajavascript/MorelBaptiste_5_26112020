@@ -14,7 +14,7 @@ async function getProduct() {
   const response = await fetch(requestProduct);
   const product = await response.json();
   cardProduct(product);
-  console.table(product)
+  console.log(product)
 }
 
 getProduct();
@@ -50,29 +50,14 @@ function cardProduct(product) {
       </div>
       `;
 
-////////////////////////////////////////////////////// A SUIVRE //////////////////////////////////////
+  /* au clique sur Ajouter au panier, l'article va dans le 
+  localStorage avec une alerte pour prevenir l'utilisateur */
 
   buttonProduct = document.getElementById('productBtn');
   buttonProduct.addEventListener('click', () => {
-    const storageCameras = JSON.parse(localStorage.getItem('basketCameras'));
-    if (storageCameras) { // 
-      let cameraExistsInBasket = false;
-      storageCameras.forEach(cameraIdInStorage => {
-        if (cameraIdInStorage === product._id) {
-          cameraExistsInBasket = true;
-        }
-      })
-      if (cameraExistsInBasket) {
-        alert('Article déja présent dans le panier')
-      } else { //
-        alert('ajouté au panier')
-        storageCameras.push(product._id)
-        localStorage.setItem('basketCameras', JSON.stringify(storageCameras));
-      }
-    } else {
-      alert('ajouté au panier')
-      console.log(JSON.stringify([product._id]));
-      localStorage.setItem('basketCameras', JSON.stringify([product._id]));
-    }
+    const storageCameras = localStorage.getItem('basketCameras') ? JSON.parse(localStorage.getItem('basketCameras')) : [];
+    storageCameras.push(product._id)
+    alert('Ajouté au panier')
+    localStorage.setItem('basketCameras', JSON.stringify(storageCameras));
   })
 }

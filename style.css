@@ -100,4 +100,21 @@ form {
 .col-md-4{
     margin: auto;
 }
-
+#orderId{
+    text-align: center;
+}
+span{
+    color: green;
+}#totalPrice p{
+    color: black;
+    width: 300px;
+    text-align: center;
+    border: 1px solid orange;
+    padding: 10px;
+    border-radius: 20px;
+    background: lightblue;
+}
+#totalPrice{
+    display: flex;
+    justify-content: center;
+}

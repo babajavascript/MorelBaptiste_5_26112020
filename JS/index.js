@@ -12,6 +12,7 @@ la résolution de la promesse */
   const response =  await fetch(camerasRequest);
   const cameras =  await response.json();
   camerasDisplay(cameras);
+  console.table(cameras)
 }
 
 getCameras();
