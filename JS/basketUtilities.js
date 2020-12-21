@@ -1,6 +1,10 @@
+// récupération des items du localStorage si il y en a . sinon créer un tableau vide //
+
 function getBasket() {
     return (localStorage.getItem("basketCameras") != null) ? JSON.parse(localStorage.getItem("basketCameras")) : [];
 }
+
+// suppression d'un produit si il est seul dans le panier, sinon -1 //
 
 function deleteProduct(id) {
     let basket = getBasket();
@@ -14,6 +18,8 @@ function deleteProduct(id) {
     }
     saveBasket(basket);
 }
+
+// si le produit n'est pas présent, on le push dans le panier, sinon on iterre pour augmenter la quantity //
 
 function addProduct(id) {
     let basket = getBasket();
@@ -29,6 +35,8 @@ function addProduct(id) {
     }
     saveBasket(basket);
 }
+
+// setItem pour sauvegarder les items récupérés par getItem //
 
 function saveBasket(basket) {
     localStorage.setItem("basketCameras", JSON.stringify(basket));

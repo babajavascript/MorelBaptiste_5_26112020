@@ -1,3 +1,5 @@
+// requete ajax utilisé pour GET et POST dans le projet //
+
 function ajax({ url, method, status, data }) {
     return new Promise((resolve, reject) => {
         let request = new XMLHttpRequest();
@@ -9,10 +11,12 @@ function ajax({ url, method, status, data }) {
                 reject(this.responseText);
             }
         }
-        request.open(method, 'http://localhost:3000/api' + url);
+        request.open(method, 'http://localhost:3000/api/cameras' + url);
+
+        // si la méthode est POST, on précise le header //
 
         if (method === 'POST') {
-            request.setRequestHeader("Content-Type", "application/json;charset=UTF-8")
+            request.setRequestHeader("Content-Type", "application/json")
         }
         request.send(JSON.stringify(data));
     })

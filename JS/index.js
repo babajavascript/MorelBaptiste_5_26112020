@@ -1,7 +1,10 @@
-ajax({ url: '/cameras', method: 'GET', status: 200, data: null }).then(result => {
-  let cameraList = document.getElementById('cameraList');
-  JSON.parse(result).forEach((camera) => {
-    cameraList.innerHTML += `
+// Request pour afficher toutes les caméras dans l'index // 
+
+function displayAllCameras() {
+  ajax({ url: '/', method: 'GET', status: 200, data: null }).then(result => {
+    let cameraList = document.getElementById('cameraList');
+    JSON.parse(result).forEach((camera) => {
+      cameraList.innerHTML += `
       <div class="card" style="width: 18rem;">
         <img src="${camera.imageUrl}" class="card-img-top" alt="...">
         <div class="card-body">
@@ -12,8 +15,10 @@ ajax({ url: '/cameras', method: 'GET', status: 200, data: null }).then(result =>
         </div>
       </div>
       `;
-  });
-})
-.catch(error =>  {
-  alert('error' + error);
-})
+    });
+  })
+    .catch(error => {
+      alert(error);
+    })
+}
+displayAllCameras();

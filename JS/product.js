@@ -1,7 +1,9 @@
+// Récupération du produit et affichage sur la page avec l'URL de l'id du produit //
+
 function getProduct() {
   const usp = new URLSearchParams(document.location.search);
   const id = usp.get('id');
-  const url = `/cameras/${id}`;
+  const url = `/${id}`;
   ajax({ url, method: 'GET', status: 200, data: null }).then(result => {
     const product = JSON.parse(result);
     const cardProd = document.getElementById('cardProduct');
@@ -20,6 +22,7 @@ function getProduct() {
           </div>
         </div>
         `;
+
     /* ajouter au panier */
 
     buttonProduct = document.getElementById('productBtn');
