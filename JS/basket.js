@@ -6,13 +6,14 @@
 function displayBasket() {
     let basketItems = getBasket();
     const basket = document.getElementById("panier");
-
+    let totalPrice = document.getElementById('totalPrice');
+    totalPrice.innerHTML = ``
     if (basketItems.length === 0) {
         basket.innerHTML = `<p>Votre panier est vide</p>`;
     } else {
         const basketTable = document.getElementById("basketTable");
         let total = 0;
-        basketItems.forEach((item, index) => {
+        basketItems.forEach((item) => {
             const cameraId = item.id;
             const quantity = item.quantity;
             ajax({ url: `/${cameraId}`, method: 'GET', status: 200, data: null })
@@ -24,17 +25,13 @@ function displayBasket() {
                     <td id="descriptionProduct">${cameraDetails.name}</td>
                     <td id="priceProduct">${(cameraDetails.price / 100).toFixed(2)}</td>
                     <td id="quantity">${quantity}</td>
-                    <td><button id="deleteButton-${index}">Supprimer</button></td>
                 </td>
                 </tr>`
-                    buttonProduct = document.getElementById(`deleteButton-${index}`);
-                    buttonProduct.addEventListener('click', () => {
-                        deleteProduct(cameraId);
-                        basketTable.innerHTML = ``;
-                        displayBasket();
-                    })
+                let btn = document.getElementById('deleteBasket')
+                btn.addEventListener('click',() => {
+                    deleteBasket();
+                })
                     total += cameraDetails.price * quantity
-                    let totalPrice = document.getElementById('totalPrice');
                     totalPrice.innerHTML = `<p>Prix total : ${(total / 100).toFixed(2)}</p>`;
                 });
         })
@@ -43,9 +40,9 @@ function displayBasket() {
         // SI ok => storage Clear et redirection va la page de confirmation , 
         // sinon alert info pour user 
 
-        function formFunction() {
+        function validForm() {
             const form = document.querySelector('.needs-validation');
-            form.addEventListener('submit', async function (event) {
+            form.addEventListener('submit', function (event) {
                 event.preventDefault();
                 event.stopPropagation();
                 cameraIds = getBasket().map(item => { return item.id });
@@ -69,7 +66,7 @@ function displayBasket() {
                 })
             })
         }
-        formFunction();
+        validForm();
     }
 }
 displayBasket();

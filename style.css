@@ -127,3 +127,9 @@ span{
     text-decoration: none;
     color: green;
 }
+#deleteBasket{
+    display: flex;
+    margin: auto;
+    margin-top: 10px;
+    border-radius: 10px;
+}
