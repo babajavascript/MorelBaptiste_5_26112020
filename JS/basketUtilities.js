@@ -7,7 +7,7 @@ function getBasket() {
 
 // vider le panier
 
-function deleteBasket() {  
+function deleteBasket() {
     localStorage.clear();
     location.reload();
 }

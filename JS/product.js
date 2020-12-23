@@ -40,7 +40,7 @@ function getLenses(lenses) {
     options += `<option value="${lense}">${lense}</option>`;
   });
   return options;
-  
+
 };
 
 

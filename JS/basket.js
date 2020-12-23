@@ -9,7 +9,7 @@ function displayBasket() {
     let totalPrice = document.getElementById('totalPrice');
     totalPrice.innerHTML = ``
     if (basketItems.length === 0) {
-        basket.innerHTML = `<p>Votre panier est vide</p>`;
+        basket.innerHTML = `<p id="emptyBasketP">Votre panier est vide</p>`;
     } else {
         const basketTable = document.getElementById("basketTable");
         let total = 0;
@@ -27,12 +27,12 @@ function displayBasket() {
                     <td id="quantity">${quantity}</td>
                 </td>
                 </tr>`
-                let btn = document.getElementById('deleteBasket')
-                btn.addEventListener('click',() => {
-                    deleteBasket();
-                })
+                    let btn = document.getElementById('deleteBasket')
+                    btn.addEventListener('click', () => {
+                        deleteBasket();
+                    })
                     total += cameraDetails.price * quantity
-                    totalPrice.innerHTML = `<p>Prix total : ${(total / 100).toFixed(2)}</p>`;
+                    totalPrice.innerHTML = `<p id="totalP">Prix total : ${(total / 100).toFixed(2)}</p>`;
                 });
         })
 
