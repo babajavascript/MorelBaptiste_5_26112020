@@ -16,7 +16,7 @@ function ajax({ url, method, status, data }) {
         // si la méthode est POST, on précise le header //
 
         if (method === 'POST') {
-            request.setRequestHeader("Content-Type", "application/json")
+            request.setRequestHeader("Content-Type", "application/json");
         }
         request.send(JSON.stringify(data));
     })

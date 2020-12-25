@@ -7,7 +7,7 @@ function displayBasket() {
     let basketItems = getBasket();
     const basket = document.getElementById("panier");
     let totalPrice = document.getElementById('totalPrice');
-    totalPrice.innerHTML = ``
+    totalPrice.innerHTML = ``;
     if (basketItems.length === 0) {
         basket.innerHTML = `<p id="emptyBasketP">Votre panier est vide</p>`;
     } else {
@@ -31,9 +31,9 @@ function displayBasket() {
                     btn.addEventListener('click', () => {
                         deleteBasket();
                     })
-                    total += cameraDetails.price * quantity
+                    total += cameraDetails.price * quantity;
                     totalPrice.innerHTML = `<p id="totalP">Prix total : ${(total / 100).toFixed(2)}</p>`;
-                });
+                })
         })
 
         // Gestion du formulaire ( validation des données USER avant commande )

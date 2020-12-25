@@ -20,11 +20,11 @@ function addProduct(id) {
 
     if (product == undefined) {
         basket.push({ id: id, quantity: 1 });
-        alert('Ajouté au panier')
+        alert('Ajouté au panier');
     }
     else {
         product.quantity++;
-        alert('Ajouté au panier')
+        alert('Ajouté au panier');
     }
     saveBasket(basket);
 }
