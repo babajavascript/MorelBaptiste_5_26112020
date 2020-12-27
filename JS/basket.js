@@ -54,10 +54,13 @@ function displayBasket() {
                     address: document.getElementById("adress").value,
 
                 }
-
                 createOrder(contact, cameraIds, (order, error) => {
                     if (error) {
                         alert('Merci de remplir le formulaire');
+                    }
+                    else if (!form.checkValidity()) {
+                        event.stopPropagation()
+                        alert('Certains champs du formulaire ne sont pas bien remplis');
                     } else {
                         localStorage.clear();
                         location.assign(`confirmation.html?id=${order.orderId}`)
@@ -70,15 +73,12 @@ function displayBasket() {
     }
 }
 displayBasket();
-
 // Request AJAX post pour envoyer les infos au serveur 
-
 function createOrder(contact, products, callback) {
     const data = {
         contact,
         products,
     }
-
     ajax({ url: '/order', method: 'POST', status: 201, data }).then(result => {
         const order = JSON.parse(result);
         console.log('order', order);
