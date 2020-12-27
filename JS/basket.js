@@ -23,7 +23,7 @@ function displayBasket() {
                 <tr>
                     <td><img id="imageProduct" src="${cameraDetails.imageUrl}"></td>
                     <td id="descriptionProduct">${cameraDetails.name}</td>
-                    <td id="priceProduct">${(cameraDetails.price / 100).toFixed(2)}</td>
+                    <td id="priceProduct">${(cameraDetails.price / 100).toFixed(2)} EUR</td>
                     <td id="quantity">${quantity}</td>
                 </td>
                 </tr>`
@@ -32,7 +32,7 @@ function displayBasket() {
                         deleteBasket();
                     })
                     total += cameraDetails.price * quantity;
-                    totalPrice.innerHTML = `<p id="totalP">Prix total : ${(total / 100).toFixed(2)}</p>`;
+                    totalPrice.innerHTML = `<p id="totalP">Prix total : ${(total / 100).toFixed(2)} EUR</p>`;
                 })
         })
 
