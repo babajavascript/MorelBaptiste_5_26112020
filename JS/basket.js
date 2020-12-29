@@ -61,7 +61,7 @@ function displayBasket() {
                     formIsInvalid += "Votre adresse est invalide \n";
                 if (/[0-9]/.test(city) || !city)
                     formIsInvalid += "Votre ville est invalide \n";
-                if (!/@/.test(email) || !email)
+                    if (!/[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,10}/.test(email) || !email)
                     formIsInvalid += "Votre mail est invalide \n";
                 if (formIsInvalid)
                     alert("Erreur : \n" + formIsInvalid);
