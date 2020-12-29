@@ -46,17 +46,39 @@ function displayBasket() {
                 event.preventDefault();
                 event.stopPropagation();
                 cameraIds = getBasket().map(item => { return item.id });
-                const contact = {
-                    email: document.getElementById("email").value,
-                    firstName: document.getElementById("firstName").value,
-                    lastName: document.getElementById("lastName").value,
-                    city: document.getElementById("city").value,
-                    address: document.getElementById("adress").value,
+                let formIsInvalid = "";
+                let firstName = document.getElementById("firstName").value;
+                let lastName = document.getElementById("lastName").value;
+                let address = document.getElementById("adress").value;
+                let city = document.getElementById("city").value;
+                let email = document.getElementById("email").value;
+            
+                if (/[0-9]/.test(firstName) || /[§!@#$%^&*().?":{}|<>]/.test(firstName) || !firstName)
+                  formIsInvalid += "Votre prénom est invalide \n";
+                if (/[0-9]/.test(lastName) || /[§!@#$%^&*().?":{}|<>]/.test(lastName) || !lastName)
+                  formIsInvalid += "Votre nom de famille est invalide \n";
+                if (!address)
+                  formIsInvalid += "Votre adresse est invalide \n";
+                if (/[0-9]/.test(city) || !city)
+                  formIsInvalid += "Votre ville est invalide \n";
+                if (!/@/.test(email) || !email)
+                  formIsInvalid += "Votre mail est invalide \n";
+                if (formIsInvalid)
+                  alert("Erreur : \n" + formIsInvalid);
+                else {
+                  let contact = {
+                    email: document.getElementById('email').value,
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    address: document.getElementById('adress').value,
+                    city: document.getElementById('city').value,
+                  }
+                
 
-                }
                 createOrder(contact, cameraIds, (order, error) => {
                     if (error) {
                         alert('Merci de remplir le formulaire');
+
                     }
                     else if (!form.checkValidity()) {
                         event.stopPropagation()
@@ -67,7 +89,7 @@ function displayBasket() {
                     }
                     form.classList.add('was-validated');
                 })
-            })
+            }})
         }
         validForm();
     }
