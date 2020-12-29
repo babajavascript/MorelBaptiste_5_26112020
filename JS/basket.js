@@ -52,44 +52,42 @@ function displayBasket() {
                 let address = document.getElementById("adress").value;
                 let city = document.getElementById("city").value;
                 let email = document.getElementById("email").value;
-            
+
                 if (/[0-9]/.test(firstName) || /[§!@#$%^&*().?":{}|<>]/.test(firstName) || !firstName)
-                  formIsInvalid += "Votre prénom est invalide \n";
+                    formIsInvalid += "Votre prénom est invalide \n";
                 if (/[0-9]/.test(lastName) || /[§!@#$%^&*().?":{}|<>]/.test(lastName) || !lastName)
-                  formIsInvalid += "Votre nom de famille est invalide \n";
+                    formIsInvalid += "Votre nom de famille est invalide \n";
                 if (!address)
-                  formIsInvalid += "Votre adresse est invalide \n";
+                    formIsInvalid += "Votre adresse est invalide \n";
                 if (/[0-9]/.test(city) || !city)
-                  formIsInvalid += "Votre ville est invalide \n";
+                    formIsInvalid += "Votre ville est invalide \n";
                 if (!/@/.test(email) || !email)
-                  formIsInvalid += "Votre mail est invalide \n";
+                    formIsInvalid += "Votre mail est invalide \n";
                 if (formIsInvalid)
-                  alert("Erreur : \n" + formIsInvalid);
+                    alert("Erreur : \n" + formIsInvalid);
                 else {
-                  let contact = {
-                    email: document.getElementById('email').value,
-                    firstName: document.getElementById('firstName').value,
-                    lastName: document.getElementById('lastName').value,
-                    address: document.getElementById('adress').value,
-                    city: document.getElementById('city').value,
-                  }
-                
-
-                createOrder(contact, cameraIds, (order, error) => {
-                    if (error) {
-                        alert('Merci de remplir le formulaire');
-
+                    let contact = {
+                        email: document.getElementById('email').value,
+                        firstName: document.getElementById('firstName').value,
+                        lastName: document.getElementById('lastName').value,
+                        address: document.getElementById('adress').value,
+                        city: document.getElementById('city').value,
                     }
-                    else if (!form.checkValidity()) {
-                        event.stopPropagation()
-                        alert('Certains champs du formulaire ne sont pas bien remplis');
-                    } else {
-                        localStorage.clear();
-                        location.assign(`confirmation.html?id=${order.orderId}`)
-                    }
-                    form.classList.add('was-validated');
-                })
-            }})
+
+
+                    createOrder(contact, cameraIds, (order, error) => {
+                        if (error) {
+                            alert('Merci de remplir le formulaire');
+
+
+                        } else {
+                            localStorage.clear();
+                            location.assign(`confirmation.html?id=${order.orderId}`)
+                        }
+                        form.classList.add('was-validated');
+                    })
+                }
+            })
         }
         validForm();
     }
